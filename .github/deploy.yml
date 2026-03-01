@@ -1,0 +1,24 @@
+name: Deploy Frontend to S3
+
+on:
+  push:
+    branches:
+      - main  # rama que quieres usar para desplegar
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::669468173150:role/deploy-test
+          aws-region: eu-west-1  # cambia si tu bucket está en otra región
+
+      - name: Sync frontend to S3
+        run: |
+          aws s3 sync frontend/ s3://static-test-tonez --delete
