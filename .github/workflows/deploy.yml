@@ -16,7 +16,7 @@ jobs:
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::669468173150:role/deploy-test-tonez  # reemplaza con el ARN de tu rol
+          role-to-assume: arn:aws:iam::669468173150:role/deploy-test  # reemplaza con el ARN de tu rol
           aws-region: eu-north-1  # cambia si tu bucket está en otra región
 
       - name: Sync frontend to S3
